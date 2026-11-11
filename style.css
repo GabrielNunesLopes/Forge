@@ -332,7 +332,6 @@ ul {
     width: auto;
     height: 100%;
     object-fit: cover;
-    -webkit-mask-image: linear-gradient(to right, transparent 0, #000 22%);
     mask-image: linear-gradient(to right, transparent 0, #000 22%);
 }
 
@@ -497,9 +496,6 @@ ul {
     margin-top: 6px;
     font-size: 12px;
     font-weight: 600;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
     overflow: hidden;
 }
 
@@ -736,18 +732,28 @@ ul {
     color: var(--cinza);
 }
 
+/* estrelas: cinza embaixo, amarelas por cima na largura da nota */
 .estrelas {
-    --p: calc(var(--n) / 5 * 100%);
+    position: relative;
+    display: inline-block;
     font-size: 13px;
     letter-spacing: 1px;
-    background: linear-gradient(90deg, #ffb800 var(--p), #d4d7dc var(--p));
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+    line-height: 1;
+    color: #d4d7dc;
 }
 
-.estrelas::before {
+.estrelas::before,
+.estrelas span::before {
     content: "★★★★★";
+}
+
+.estrelas span {
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    color: #ffb800;
 }
 
 .card h3 {
@@ -756,9 +762,6 @@ ul {
     font-weight: 500;
     line-height: 1.35;
     min-height: 3.9em;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
     overflow: hidden;
 }
 
@@ -803,10 +806,8 @@ ul {
     overflow: hidden;
 }
 
-.card__estoque span::before {
-    content: "";
+.card__estoque i {
     display: block;
-    width: var(--p);
     height: 100%;
     background: var(--laranja);
 }
@@ -868,7 +869,7 @@ ul {
     color: var(--cinza);
 }
 
-.card--esgotado .card__estoque span::before {
+.card--esgotado .card__estoque i {
     background: #9aa0a8;
 }
 
@@ -1278,7 +1279,6 @@ ul {
     }
 
     .slide__arte img {
-        -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 20%);
         mask-image: linear-gradient(to bottom, transparent 0, #000 20%);
     }
 
@@ -1459,9 +1459,6 @@ ul {
     scrollbar-width: none;
 }
 
-.carrossel::-webkit-scrollbar {
-    display: none;
-}
 
 /* =========================================================
    Carrossel com scroll-snap (setas e pontinhos via script.js)
@@ -1473,9 +1470,6 @@ ul {
     scrollbar-width: none;
 }
 
-.carrossel__trilho::-webkit-scrollbar {
-    display: none;
-}
 
 .carrossel__trilho .slide {
     scroll-snap-align: start;
